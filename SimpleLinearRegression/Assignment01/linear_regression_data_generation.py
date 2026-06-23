@@ -3,7 +3,7 @@
 任务：完成 generate_data()，根据直线方程和噪声生成 y 值。
 运行方式：python linear_regression_data_generation.py
 """
-
+import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -15,9 +15,11 @@ NOISE_STD = 1.5
 N_POINTS = 100
 RANDOM_SEED = 42
 
-CSV_PATH = "linear_regression_data.csv"
-FIG_PATH = "linear_regression_data.png"
-
+# CSV_PATH = "linear_regression_data.csv"
+# FIG_PATH = "linear_regression_data.png"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+CSV_PATH = os.path.join(SCRIPT_DIR, "linear_regression_data.csv")
+FIG_PATH = os.path.join(SCRIPT_DIR, "linear_regression_data.png")
 
 def generate_data(n_points=N_POINTS, w_true=W_TRUE, b_true=B_TRUE, noise_std=NOISE_STD, seed=RANDOM_SEED):
     rng = np.random.default_rng(seed)
@@ -27,8 +29,9 @@ def generate_data(n_points=N_POINTS, w_true=W_TRUE, b_true=B_TRUE, noise_std=NOI
     #   2. 采样均值为 0、标准差为 `noise_std` 的高斯噪声，共 `n_points` 个。
     #   3. 计算 y = w_true * x + b_true + noise。
 
-    x = None  # 用你的代码替换此处
-    y = None  # 用你的代码替换此处
+    x =np.random.uniform(-5,5,n_points)
+    noise=np.random.normal(0,noise_std,n_points)
+    y =w_true*x+b_true+noise
 
     return x, y
 
