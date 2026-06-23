@@ -1,0 +1,47 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>b3f3af99-17e8-4248-84f9-eec7c79b0701</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>
+    </StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>ML_Assignment</Name>
+    <RootNamespace>ML_Assignment</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="SimpleLinearRegression\" />
+    <Folder Include="SimpleLinearRegression\Assignment01\" />
+    <Folder Include="SimpleLinearRegression\Assignment02\" />
+    <Folder Include="SimpleLinearRegression\Assignment03\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SimpleLinearRegression\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SimpleLinearRegression\Assignment01\linear_regression_data_generation.py" />
+    <Compile Include="SimpleLinearRegression\Assignment02\draw_loss_contour.py" />
+    <Compile Include="SimpleLinearRegression\Assignment03\linear_gradient_descent.py" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
