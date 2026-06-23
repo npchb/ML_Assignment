@@ -7,13 +7,17 @@
 
 在完成作业一之后运行：python draw_loss_contour.py
 """
-
+import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-CSV_PATH = "linear_regression_data.csv"
-FIG_PATH = "loss_contour.png"
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(SCRIPT_DIR, "..", "data") 
+#os.makedirs(DATA_DIR,exist_ok=True)
+CSV_PATH = os.path.join(DATA_DIR,"linear_regression_data.csv")
+FIG_PATH = os.path.join(DATA_DIR,"loss_contour.png")
 
 
 def load_data(csv_path=CSV_PATH):
@@ -37,7 +41,8 @@ def compute_loss(w, b, x, y):
         带 1/(2m) 系数的均方误差损失。
     """
     # TODO：实现损失函数
-    raise NotImplementedError
+    return (np.sum((np.dot(x,w)+b-y)**2))/(2*x.shape[0])
+
 
 
 def normal_equation_solution(x, y):
@@ -49,7 +54,9 @@ def normal_equation_solution(x, y):
         最小二乘意义下的最优斜率和截距。
     """
     # TODO：构造设计矩阵并求解正规方程
-    raise NotImplementedError
+    x=np.c_[np.ones((x.shape[0],1)),x]
+    return tuple(np.linalg.inv((x.T.dot(x))).dot(x.T).dot(y))
+    
 
 
 def draw_contour(x, y, save_path=FIG_PATH):
@@ -66,7 +73,7 @@ def draw_contour(x, y, save_path=FIG_PATH):
 
     # TODO：计算每个网格点上的 Z[i, j] = J(W[i, j], B[i, j], x, y)。
     #       请勿使用 Python 的 for 循环；请使用 NumPy 的广播机制。
-    Z = None  # 用你的代码替换此处
+    Z =  (1/2) *np.mean((W[:,:,None]*x[None,None,:]+B[:,:,None]-y[None,None,:])**2,axis=2)
 
     fig, ax = plt.subplots(figsize=(7, 6))
     contour = ax.contour(W, B, Z, levels=20, cmap="viridis")

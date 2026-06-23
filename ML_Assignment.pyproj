@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>b3f3af99-17e8-4248-84f9-eec7c79b0701</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>SimpleLinearRegression\Assignment01\linear_regression_data_generation.py</StartupFile>
+    <StartupFile>SimpleLinearRegression\Assignment02\draw_loss_contour.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
