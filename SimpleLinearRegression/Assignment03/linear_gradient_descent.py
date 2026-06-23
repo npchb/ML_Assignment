@@ -8,13 +8,16 @@
 
 在完成作业一之后运行：python linear_gradient_descent.py
 """
-
+import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-CSV_PATH = "linear_regression_data.csv"
-FIG_PATH = "gradient_descent_contour.png"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(SCRIPT_DIR, "..", "data") 
+#os.makedirs(DATA_DIR,exist_ok=True)
+CSV_PATH = os.path.join(DATA_DIR,"linear_regression_data.csv")
+FIG_PATH = os.path.join(DATA_DIR,"gradient_descent_contour.png")
 
 # 梯度下降超参数
 LEARNING_RATE = 0.05
@@ -31,7 +34,7 @@ def load_data(csv_path=CSV_PATH):
 def compute_loss(w, b, x, y):
     """计算 J(w, b) = (1 / 2m) * sum((w*x + b - y)^2)。"""
     # TODO：实现损失函数
-    raise NotImplementedError
+    return (np.sum((np.dot(x,w)+b-y)**2))/(2*x.shape[0])
 
 
 def normal_equation_solution(x, y):
@@ -48,7 +51,11 @@ def normal_equation_solution(x, y):
 def compute_gradients(w, b, x, y):
     """返回偏导数 (dJ/dw, dJ/db)。"""
     # TODO：自行推导并实现 J 对 w 和 b 的梯度
-    raise NotImplementedError
+    err=np.dot(x,w)+b-y
+
+    db=np.sum(err)/x.shape[0]
+    dw=x.T@(err)/x.shape[0]
+    return dw,db
 
 
 def gradient_descent(x, y, lr=LEARNING_RATE, n_iterations=N_ITERATIONS, init_w=INIT_W, init_b=INIT_B):
@@ -57,8 +64,9 @@ def gradient_descent(x, y, lr=LEARNING_RATE, n_iterations=N_ITERATIONS, init_w=I
 
     for _ in range(n_iterations):
         # TODO：计算 (w, b) 处的梯度，并执行一步梯度下降
-        pass
-
+        dw,db=compute_gradients(w,b,x,y)
+        w=w-lr*dw
+        b=b-lr*db
         history.append((w, b, compute_loss(w, b, x, y)))
 
     return w, b, history
@@ -75,7 +83,7 @@ def draw_contour_with_path(x, y, history, save_path=FIG_PATH):
 
     # TODO：在 (W, B) 上计算损失矩阵 Z，方法与作业二相同。
     #       请勿使用 Python 的 for 循环；请使用 NumPy 的广播机制。
-    Z = None  # 用你的代码替换此处
+    Z = (1/2)*np.mean((W[:,:,None]*x[None,None,:]+B[:,:,None]-y[None,None,:])**2,axis=2)
 
     w_path = [h[0] for h in history]
     b_path = [h[1] for h in history]
@@ -101,7 +109,6 @@ def main():
     w_final, b_final, history = gradient_descent(x, y)
     w_opt, b_opt = normal_equation_solution(x, y)
 
-    print(f"Gradient descent result: w={w_final:.4f}, b={b_final:.4f}")
     print(f"Normal equation solution: w={w_opt:.4f}, b={b_opt:.4f}")
     print(f"Final loss: J={history[-1][2]:.4f}")
     print(f"Optimal loss: J={compute_loss(w_opt, b_opt, x, y):.4f}")
