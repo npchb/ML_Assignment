@@ -54,7 +54,7 @@ def normal_equation_solution(x, y):
         最小二乘意义下的最优斜率和截距。
     """
     # TODO：构造设计矩阵并求解正规方程
-    x=np.c_[np.ones((x.shape[0],1)),x]
+    x=np.c_[x,np.ones((x.shape[0],1))]
     return tuple(np.linalg.inv((x.T.dot(x))).dot(x.T).dot(y))
     
 
@@ -95,7 +95,6 @@ def draw_contour(x, y, save_path=FIG_PATH):
 def main():
     x, y = load_data()
     draw_contour(x, y)
-
 
 if __name__ == "__main__":
     main()
