@@ -11,6 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>ML_Assignment</Name>
     <RootNamespace>ML_Assignment</RootNamespace>
+    <InterpreterId>Global|VisualStudio|base_env</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,6 +35,9 @@
     <Compile Include="SimpleLinearRegression\Assignment01\linear_regression_data_generation.py" />
     <Compile Include="SimpleLinearRegression\Assignment02\draw_loss_contour.py" />
     <Compile Include="SimpleLinearRegression\Assignment03\linear_gradient_descent.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|VisualStudio|base_env" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

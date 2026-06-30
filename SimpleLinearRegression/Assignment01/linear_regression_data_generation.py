@@ -19,7 +19,7 @@ RANDOM_SEED = 42
 # FIG_PATH = "linear_regression_data.png"
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(SCRIPT_DIR, "..", "data") 
-#os.makedirs(DATA_DIR,exist_ok=True)
+os.makedirs(DATA_DIR,exist_ok=True)
 CSV_PATH = os.path.join(DATA_DIR, "linear_regression_data.csv")
 FIG_PATH = os.path.join(DATA_DIR, "linear_regression_data.png")
 
