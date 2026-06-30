@@ -31,8 +31,8 @@ def generate_data(n_points=N_POINTS, w_true=W_TRUE, b_true=B_TRUE, noise_std=NOI
     #   2. 采样均值为 0、标准差为 `noise_std` 的高斯噪声，共 `n_points` 个。
     #   3. 计算 y = w_true * x + b_true + noise。
 
-    x =np.random.uniform(-5,5,n_points)
-    noise=np.random.normal(0,noise_std,n_points)
+    x =rng.uniform(-5,5,n_points)
+    noise=rng.normal(0,noise_std,n_points)
     y =w_true*x+b_true+noise
 
     return x, y
